@@ -62,6 +62,12 @@
 
 "search.recents.title" = "Recent searches";
 "search.popular.title" = "Try searching with";
+// Section header above example search terms that find a verse, or a page, surah, juz or hizb, by its number.
+"search.tips.title" = "Search by number";
+// Explains the example term "2:255": surah number, a colon, then the verse number.
+"search.tips.verse" = "Surah:verse";
+// Explains the example term "50": a number goes to that page, surah, juz or hizb.
+"search.tips.number" = "Page, surah, juz or hizb";
 "search.placeholder.text" = "Surah, verse, translation, tafseer, and numbers";
 "search.result.count" = "%@ (%d)";
 

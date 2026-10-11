@@ -33,6 +33,13 @@ struct SearchView: View {
     }
 }
 
+private struct SearchNavigationTip: Identifiable {
+    let term: String
+    let description: String
+
+    var id: String { term }
+}
+
 private struct SearchViewUI: View {
     @Binding var error: Error?
 
@@ -97,6 +104,15 @@ private struct SearchViewUI: View {
     @ViewBuilder
     var entry: some View {
         NoorList {
+            NoorSection(title: l("search.tips.title"), navigationTips) { tip in
+                NoorListItem(
+                    image: .init(.search, color: .secondaryLabel),
+                    title: .text(tip.term),
+                    subtitle: .init(text: .text(tip.description), location: .bottom),
+                    action: .sync { search(tip.term) }
+                )
+            }
+
             NoorSection(title: l("search.recents.title"), recents.map(SelfIdentifiable.init)) { item in
                 NoorListItem(
                     image: .init(.search, color: .secondaryLabel),
@@ -113,6 +129,14 @@ private struct SearchViewUI: View {
                 )
             }
         }
+    }
+
+    /// Example terms that find a verse, or a page, surah, juz or hizb, by its number.
+    var navigationTips: [SearchNavigationTip] {
+        [
+            SearchNavigationTip(term: "2:255", description: l("search.tips.verse")),
+            SearchNavigationTip(term: "50", description: l("search.tips.number")),
+        ]
     }
 
     @ViewBuilder
